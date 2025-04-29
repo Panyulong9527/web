@@ -1,0 +1,22 @@
+{
+    "title": "AldrichWorld 智能平台",
+    "subtitle": "基于深度学习的新一代语音处理解决方案",
+    "recognition": "智能语音识别",
+    "recognitionDesc": "• 支持128种语言实时转录\n• 行业领先的97.5%准确率\n• 领域特定术语优化\n• 噪声抑制与增强",
+    "transcription": "多模态转录",
+    "transcriptionDesc": "• 音频/视频文件分析\n• 自动生成带时间戳的SRT\n• 说话人分离与识别\n• AI驱动的文本摘要",
+    "calibration": "智能校准系统",
+    "calibrationDesc": "• 自适应噪声消除\n• 实时语音优化\n• 多设备同步\n• 个性化声纹配置",
+    "about": "关于我们",
+    "aboutDesc": "深耕语音技术领域十年，为全球企业提供专业级语音处理解决方案",
+    "company": "公司简介",
+    "team": "技术团队",
+    "news": "最新动态",
+    "support": "技术支持",
+    "docs": "文档中心",
+    "downloads": "资源下载",
+    "api": "开发者API",
+    "contact": "联系我们",
+    "contactInfo": "技术支持：support@voxtech.com\n商务合作：sales@voxtech.com\n电话：+86 400-888-1234",
+    "learnMore": "了解更多"
+}

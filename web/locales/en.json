@@ -1,0 +1,22 @@
+{
+    "title": "AldrichWorld Intelligence Platform",
+    "subtitle": "Next-generation speech processing solution based on deep learning",
+    "recognition": "Smart Speech Recognition",
+    "recognitionDesc": "• Real-time transcription for 128 languages\n• Industry-leading 97.5% accuracy\n• Domain-specific terminology optimization\n• Noise suppression & enhancement",
+    "transcription": "Multimodal Transcription",
+    "transcriptionDesc": "• Audio/video file analysis\n• Auto-generated timestamped SRT\n• Speaker diarization & identification\n• AI-powered text summarization",
+    "calibration": "Smart Calibration System",
+    "calibrationDesc": "• Adaptive noise cancellation\n• Real-time voice optimization\n• Multi-device synchronization\n• Personalized voiceprint config",
+    "about": "About Us",
+    "aboutDesc": "Deeply cultivating the field of speech technology for ten years, providing professional level speech processing solutions for global enterprises",
+    "company": "Company Profile",
+    "team": "Technical Team",
+    "news": "Latest News",
+    "support": "Support",
+    "docs": "Documentation",
+    "downloads": "Downloads",
+    "api": "Developer API",
+    "contact": "Contact Us",
+    "contactInfo": "Technical support: support@voxtech.com\nBusiness cooperation: sales@voxtech.com\nPhone: +86 400-888-1234",
+    "learnMore": "Learn More"
+}
