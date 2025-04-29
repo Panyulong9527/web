@@ -1,0 +1,22 @@
+{
+    "title": "Plateforme d'Intelligence AldrichWorld",
+    "subtitle": "Solution de traitement vocal de nouvelle génération basée sur l'apprentissage profond",
+    "recognition": "Reconnaissance Vocale Intelligente",
+    "recognitionDesc": "• Transcription en temps réel pour 128 langues\n• Précision leader de l'industrie de 97,5%\n• Optimisation de la terminologie spécifique\n• Suppression et amélioration du bruit",
+    "transcription": "Transcription Multimodale",
+    "transcriptionDesc": "• Analyse des fichiers audio/vidéo\n• SRT horodaté généré automatiquement\n• Diarisation et identification du locuteur\n• Résumé de texte alimenté par l'IA",
+    "calibration": "Système de Calibration Intelligent",
+    "calibrationDesc": "• Annulation adaptative du bruit\n• Optimisation vocale en temps réel\n• Synchronisation multi-appareils\n• Configuration d'empreinte vocale personnalisée",
+    "about": "À Propos",
+    "aboutDesc": "Dix ans d'expertise dans le domaine de la technologie vocale, fournissant des solutions professionnelles aux entreprises mondiales",
+    "company": "Profil de l'Entreprise",
+    "team": "Équipe Technique",
+    "news": "Actualités",
+    "support": "Support",
+    "docs": "Documentation",
+    "downloads": "Téléchargements",
+    "api": "API Développeur",
+    "contact": "Contact",
+    "contactInfo": "Support technique: support@voxtech.com\nCoopération commerciale: sales@voxtech.com\nTéléphone: +86 400-888-1234",
+    "learnMore": "En savoir plus"
+} 
