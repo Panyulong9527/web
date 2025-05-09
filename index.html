@@ -60,6 +60,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; color: #fff; overflow-x: hidd
     padding: 30px;
     border: 1px solid rgba(255,255,255,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .module-card:hover {
@@ -243,75 +244,29 @@ footer {
     
     <!-- 语言切换器 -->
     <div class="lang-switcher">
-        <div class="custom-select closed">
-            <div class="select-trigger">
-                <span class="selected-text">简体中文</span>
+        <div class="custom-select closed" id="langSelectBox">
+            <div class="select-trigger" id="langTrigger">
+                <span class="selected-text" id="currentLangText">简体中文</span>
                 <div class="select-icon">
                     <i class="fas fa-globe"></i>
                 </div>
             </div>
-            <ul class="options-container">
-                <li class="option" data-value="zh">简体中文</li>
-                <li class="option" data-value="en">English</li>
-                <li class="option" data-value="fr">Français</li>
-                <li class="option" data-value="es">Español</li>
-                <li class="option" data-value="pt">Português</li>
-                <li class="option" data-value="ja">日本語</li>
+            <ul class="options-container" id="langOptions">
+                <li class="option selected" data-lang="zh">简体中文</li>
+                <li class="option" data-lang="en">English</li>
+                <li class="option" data-lang="es">Español</li>
             </ul>
         </div>
     </div>
 
     <div class="container">
-        <div class="header">
-            <h1 data-translate="title">智能语音处理系统</h1>
+        <header class="header">
+            <h1 id="mainTitle">智能语音处理系统 - VoxTech Pro</h1>
             <p data-translate="subtitle">基于深度学习的新一代语音处理解决方案</p>
-        </div>
-
-        <div class="module-section">
-            <div class="module-card" onclick="window.location.href='details/voice-recognition.html'" role="button" tabindex="0">
-                <i class="module-icon fas fa-microphone-alt"></i>
-                <h2 class="module-title" data-translate="recognition">智能语音识别</h2>
-                <p class="module-content" data-translate="recognitionDesc">
-                    • 支持128种语言实时转录<br>
-                    • 行业领先的97.5%准确率<br>
-                    • 领域特定术语优化<br>
-                    • 噪声抑制与增强
-                </p>
-                <div class="card-footer">
-                    <span class="learn-more" data-translate="learnMore">了解更多</span>
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="module-card" onclick="window.location.href='details/transcription.html'" role="button" tabindex="0">
-                <i class="module-icon fas fa-file-audio"></i>
-                <h2 class="module-title" data-translate="transcription">多模态转写</h2>
-                <p class="module-content" data-translate="transcriptionDesc">
-                    • 音频/视频文件分析<br>
-                    • 自动生成带时间戳的SRT<br>
-                    • 说话人分离与识别<br>
-                    • AI驱动的文本摘要
-                </p>
-                <div class="card-footer">
-                    <span class="learn-more" data-translate="learnMore">了解更多</span>
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="module-card" onclick="window.location.href='details/calibration.html'" role="button" tabindex="0">
-                <i class="module-icon fas fa-sliders-h"></i>
-                <h2 class="module-title" data-translate="calibration">智能校准系统</h2>
-                <p class="module-content" data-translate="calibrationDesc">
-                    • 自适应噪声消除<br>
-                    • 实时语音优化<br>
-                    • 多设备同步<br>
-                    • 个性化声纹配置
-                </p>
-                <div class="card-footer">
-                    <span class="learn-more" data-translate="learnMore">了解更多</span>
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
+        </header>
+        
+        <div class="module-section" id="moduleContainer">
+            <!-- 模块将通过 JavaScript 动态加载 -->
         </div>
 
         <footer>
@@ -347,137 +302,88 @@ footer {
         </footer>
     </div>
 
-<script>
-// 更新的JavaScript代码
-class LanguageManager {
-    constructor() {
-        this.translations = {};
-        this.currentLang = 'zh';
-        this.init();
-    }
+    <script>
+        let currentLang = localStorage.getItem('currentLang') || 'zh';
+        let config = null;
 
-    init() {
-        // 从localStorage获取保存的语言设置
-        const savedLang = localStorage.getItem('preferredLang');
-        if (savedLang) {
-            this.currentLang = savedLang;
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('currentLang', lang);
+            const langMap = { zh: '简体中文', en: 'English', es: 'Español' };
+            document.getElementById('currentLangText').textContent = langMap[lang] || lang;
+            document.getElementById('mainTitle').textContent =
+                lang === 'zh' ? '智能语音处理系统 - VoxTech Pro' :
+                lang === 'en' ? 'Voice Processing System - VoxTech Pro' :
+                'Plataforma de Inteligencia AldrichWorld';
+            renderModules();
+            Array.from(document.querySelectorAll('#langOptions .option')).forEach(opt => {
+                opt.classList.toggle('selected', opt.getAttribute('data-lang') === lang);
+            });
         }
-        
-        // 先加载翻译
-        this.loadTranslations();
-        
-        // 然后设置下拉框
-        this.setupCustomSelect();
-        
-        // 初始化时更新选中状态
-        this.updateSelectedOption(this.currentLang);
-    }
 
-    loadTranslations() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', `locales/${this.currentLang}.json`, true);
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    try {
-                        this.translations = JSON.parse(xhr.responseText);
-                        this.applyTranslations();
-                        console.log('成功加载语言:', this.currentLang);
-                    } catch (error) {
-                        console.error('解析语言文件失败:', error);
-                    }
-                } else {
-                    console.error('加载语言文件失败');
+        async function loadModules() {
+            try {
+                const response = await fetch('config.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
+                config = await response.json();
+                renderModules();
+            } catch (error) {
+                console.error('加载模块配置失败:', error);
+                const moduleContainer = document.getElementById('moduleContainer');
+                moduleContainer.innerHTML = `
+                    <div style="color: #ff4444; text-align: center; padding: 20px;">
+                        加载模块失败，请检查配置文件或刷新页面重试
+                    </div>
+                `;
             }
-        };
-        xhr.send();
-    }
+        }
 
-    setupCustomSelect() {
-        const customSelect = document.querySelector('.custom-select');
-        const trigger = customSelect.querySelector('.select-trigger');
-        const selectedText = trigger.querySelector('.selected-text');
-        const options = customSelect.querySelectorAll('.option');
+        function renderModules() {
+            if (!config) return;
+            const moduleContainer = document.getElementById('moduleContainer');
+            moduleContainer.innerHTML = '';
+            config.modules.forEach(module => {
+                const moduleCard = document.createElement('a');
+                moduleCard.className = 'module-card';
+                moduleCard.href = module.link;
+                moduleCard.innerHTML = `
+                    <div class="module-icon">
+                        <i class="fas ${module.icon}"></i>
+                    </div>
+                    <h2 class="module-title">${module.title[currentLang] || '未配置'}</h2>
+                    <p class="module-content">${module.content[currentLang] || '未配置'}</p>
+                `;
+                moduleContainer.appendChild(moduleCard);
+            });
+        }
 
-        // 确保初始状态是关闭的
-        customSelect.classList.add('closed');
+        document.addEventListener('DOMContentLoaded', () => {
+            loadModules();
 
-        // 点击触发器打开/关闭下拉框
-        trigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            customSelect.classList.toggle('active');
-            customSelect.classList.toggle('closed');
-        });
-
-        // 点击选项切换语言
-        options.forEach(option => {
-            option.addEventListener('click', (e) => {
+            const selectBox = document.getElementById('langSelectBox');
+            const trigger = document.getElementById('langTrigger');
+            const options = document.getElementById('langOptions').getElementsByClassName('option');
+            setLang(currentLang);
+            trigger.addEventListener('click', function(e) {
+                selectBox.classList.toggle('active');
+                selectBox.classList.toggle('closed');
                 e.stopPropagation();
-                const value = option.getAttribute('data-value');
-                const text = option.textContent;
-                
-                // 更新显示文本
-                selectedText.textContent = text;
-                
-                // 切换语言
-                this.switchLanguage(value);
-                
-                // 关闭下拉框
-                customSelect.classList.remove('active');
-                customSelect.classList.add('closed');
-                
-                // 更新选中状态
-                this.updateSelectedOption(value);
-                
-                console.log('语言切换为:', value);
+            });
+            Array.from(options).forEach(option => {
+                option.addEventListener('click', function(e) {
+                    setLang(this.getAttribute('data-lang'));
+                    selectBox.classList.remove('active');
+                    selectBox.classList.add('closed');
+                    e.stopPropagation();
+                });
+            });
+            document.addEventListener('click', function() {
+                selectBox.classList.remove('active');
+                selectBox.classList.add('closed');
             });
         });
-
-        // 点击页面其他地方关闭下拉框
-        document.addEventListener('click', () => {
-            customSelect.classList.remove('active');
-            customSelect.classList.add('closed');
-        });
-    }
-
-    updateSelectedOption(lang) {
-        const options = document.querySelectorAll('.option');
-        const selectedText = document.querySelector('.selected-text');
-        
-        options.forEach(option => {
-            const isSelected = option.getAttribute('data-value') === lang;
-            option.classList.toggle('selected', isSelected);
-            if (isSelected) {
-                selectedText.textContent = option.textContent;
-            }
-        });
-    }
-
-    switchLanguage(lang) {
-        if (lang !== this.currentLang) {
-            this.currentLang = lang;
-            localStorage.setItem('preferredLang', lang);
-            this.loadTranslations();
-            document.documentElement.lang = lang;
-        }
-    }
-
-    applyTranslations() {
-        const elements = document.querySelectorAll('[data-translate]');
-        elements.forEach(element => {
-            const key = element.getAttribute('data-translate');
-            if (this.translations[key]) {
-                element.innerHTML = this.translations[key].replace(/\n/g, '<br>');
-            }
-        });
-    }
-}
-
-// 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', () => {
-    window.langManager = new LanguageManager();
-});
-</script>
+    </script>
 </body>
 </html>

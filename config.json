@@ -1,0 +1,79 @@
+{
+    "modules": [
+      {
+        "id": "voice-recognition",
+        "icon": "fa-microphone",
+        "title": {
+          "zh": "语音识别",
+          "en": "Voice Recognition",
+          "es": "Reconocimiento de Voz"
+        },
+        "content": {
+          "zh": "先进的语音识别技术，支持多语言实时转写，准确率高达98%。",
+          "en": "Advanced voice recognition technology supporting real-time multilingual transcription with 98% accuracy.",
+          "es": "Tecnología avanzada de reconocimiento de voz con transcripción multilingüe en tiempo real y 98% de precisión."
+        },
+        "link": "/details/voice-recognition.html"
+      },
+      {
+        "id": "voice-synthesis",
+        "icon": "fa-volume-up",
+        "title": {
+          "zh": "语音合成",
+          "en": "Voice Synthesis",
+          "es": "Síntesis de Voz"
+        },
+        "content": {
+          "zh": "自然流畅的语音合成系统，支持多种音色和情感表达。",
+          "en": "Natural and fluent voice synthesis system supporting multiple timbres and emotional expressions.",
+          "es": "Sistema de síntesis de voz natural y fluida que admite múltiples timbres y expresiones emocionales."
+        },
+        "link": "/details/voice-synthesis.html"
+      },
+      {
+        "id": "noise-reduction",
+        "icon": "fa-filter",
+        "title": {
+          "zh": "噪声消除",
+          "en": "Noise Reduction",
+          "es": "Reducción de Ruido"
+        },
+        "content": {
+          "zh": "智能降噪技术，有效过滤背景噪音，提升语音质量。",
+          "en": "Intelligent noise reduction technology effectively filtering background noise to improve voice quality.",
+          "es": "Tecnología inteligente de reducción de ruido que filtra eficazmente el ruido de fondo y mejora la calidad de la voz."
+        },
+        "link": "/details/noise-reduction.html"
+      },
+      {
+        "id": "voice-analysis",
+        "icon": "fa-chart-line",
+        "title": {
+          "zh": "语音分析",
+          "en": "Voice Analysis",
+          "es": "Análisis de Voz"
+        },
+        "content": {
+          "zh": "深度语音分析系统，支持情感识别和说话人识别。",
+          "en": "Deep voice analysis system supporting emotion recognition and speaker identification.",
+          "es": "Sistema de análisis de voz avanzado que admite el reconocimiento de emociones y de hablantes."
+        },
+        "link": "/details/voice-analysis.html"
+      },
+      {
+        "id": "new-module",
+        "icon": "fa-star",
+        "title": {
+          "zh": "新功能模块",
+          "en": "New Feature Module",
+          "es": "Nuevo Módulo"
+        },
+        "content": {
+          "zh": "这是新添加的功能模块描述。",
+          "en": "This is the description of the newly added feature module.",
+          "es": "Esta es la descripción del nuevo módulo añadido."
+        },
+        "link": "/details/new-module.html"
+      }
+    ]
+  }
